@@ -1,0 +1,51 @@
+class Media Playlists{
+constructor(_name, _duration){
+this.name = _name;
+this.duration = _duration;
+}
+playing(){
+return this.name;
+}
+}
+class Song extends Media{
+constructor(_name, _duration,_artist){
+super(_name, _duration);
+this.artist=_artist;
+}
+printDescription (){
+ return  "Song Name is :" +this.name + " & its Duration is :" + this.duration+" 's & artist name is: "+this.artist;
+}
+}
+class Podcasts extends Media{
+constructor(_name, _duration){
+super(_name, _duration);
+}
+printDescription (){
+ return  "Podcast Name is :" +this.name + " & its Duration is :" + this.duration;
+}
+}
+class movie extends Media{
+constructor(_name, _duration,_rating){
+super(_name, _duration);
+this.rating=_rating;
+}
+printDescription (){
+ return  "Movie name is :" +this.name + " & its Duration is :" + this.duration+" 's & Rating is "+this.rating;
+}
+}
+var playlist=[];
+playlist[0]=new Song("Give Her Some Money", "2:51", "Malibu Mitch");
+playlist[1]=new movie("Midnight in Paris", "1:34", "PG-13");
+playlist[2]=new Podcasts("The Breakdown with Shaun King Ep. 57", "6:24");
+playlist.sort(function(a, b){
+    var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+    if (nameA < nameB)
+        return -1
+    if (nameA > nameB)
+        return 1
+    return 0
+})
+function next( playlist){
+ return playlist[i].name+" is playing &  next is  "+playlist[i+1].name+" & "+playlist[i+1+1].name;
+}
+document.getElementById("main").innerHTML=  playlist[0].playing()+ "<br/> "+playlist[1].playing()+ "<br/> "+playlist[2].playing()+"<br/> "+playlist[0].printDescription()+"<br/> "+playlist[1].printDescription()+"<br/> "+playlist[2].printDescription()+"<br/> "+next(playlist);
